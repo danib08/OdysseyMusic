@@ -11,9 +11,13 @@ namespace Server.Models
         [Key]
         [Column("id_user")]
         public int IdUser { get; set; }
+
+        [Required]
         [Column("name_user")]
         [StringLength(255)]
         public string NameUser { get; set; }
+
+        [Required]
         [Column("email_user")]
         [StringLength(255)]
         public string EmailUser { get; set; }

@@ -11,6 +11,7 @@ namespace Server.Models
         [Key]
         [Column("id_song")]
         public int IdSong { get; set; }
+
         [Column("name_song")]
         [StringLength(255)]
         public string NameSong { get; set; }
