@@ -15,7 +15,6 @@ namespace Server.Models
         {
         }
 
-        public virtual DbSet<Artists> Artists { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
@@ -29,24 +28,11 @@ namespace Server.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Artists>(entity =>
-            {
-                entity.HasKey(e => e.IdArtist)
-                    .HasName("PRIMARY");
-            });
-
+          
             modelBuilder.Entity<Songs>(entity =>
             {
                 entity.HasKey(e => e.IdSong)
                     .HasName("PRIMARY");
-
-                entity.HasIndex(e => e.IdArtist)
-                    .HasName("id_artist");
-
-                entity.HasOne(d => d.IdArtistNavigation)
-                    .WithMany(p => p.Songs)
-                    .HasForeignKey(d => d.IdArtist)
-                    .HasConstraintName("songs_ibfk_1");
             });
 
             modelBuilder.Entity<Users>(entity =>

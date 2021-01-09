@@ -11,17 +11,16 @@ namespace Server.Models
         [Key]
         [Column("id_song")]
         public int IdSong { get; set; }
-
         [Column("name_song")]
         [StringLength(255)]
         public string NameSong { get; set; }
         [Column("lyrics")]
         public string Lyrics { get; set; }
-        [Column("id_artist")]
-        public int? IdArtist { get; set; }
-
-        [ForeignKey(nameof(IdArtist))]
-        [InverseProperty(nameof(Artists.Songs))]
-        public virtual Artists IdArtistNavigation { get; set; }
+        [Column("name_artist")]
+        [StringLength(255)]
+        public string NameArtist { get; set; }
+        [Column("name_album")]
+        [StringLength(255)]
+        public string NameAlbum { get; set; }
     }
 }

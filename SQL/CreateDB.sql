@@ -1,18 +1,12 @@
 CREATE DATABASE OdysseyMusicDB; 
 
-CREATE TABLE `Artists` (
-  `id_artist` INT AUTO_INCREMENT,
-  `name_artist` VARCHAR(255),
-  PRIMARY KEY (`id_artist`)
-);
-
 CREATE TABLE `Songs` (
   `id_song` INT AUTO_INCREMENT,
   `name_song` VARCHAR(255),
+  `name_artist` VARCHAR(255),
+  `name_album` VARCHAR(255),
   `lyrics` TEXT,
-  `id_artist` INT,
-  PRIMARY KEY (`id_song`),
-  FOREIGN KEY (`id_artist`) REFERENCES Artists(`id_artist`)
+  PRIMARY KEY (`id_song`)
 );
 
 CREATE TABLE `Users` (
