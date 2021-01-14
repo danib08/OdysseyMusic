@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MusixMatch_API;
-using MusixMatch_API.APIMethods.Artist;
 using Server.Models;
 using System;
 using System.Collections.Generic;
@@ -27,20 +25,20 @@ namespace Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var user = await odysseyDB.Songs.ToListAsync();
-            return Ok(user);
+            var songs = await odysseyDB.Songs.ToListAsync();
+            return Ok(songs);
         }
 
         // GET api/<SongsController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var user = await odysseyDB.Songs.FindAsync(id);
-            if (user == null)
+            var song = await odysseyDB.Songs.FindAsync(id);
+            if (song == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(song);
         }
 
         // GET api/<SongsController>/search/
@@ -51,16 +49,20 @@ namespace Server.Controllers
             return Ok(query);
         }
 
-        // POST api/<SongsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // DELETE api/<SongsController>/5
+        // DELETE api/<SongsController>/id
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var song = await odysseyDB.Users.FindAsync(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            odysseyDB.Users.Remove(song);
+            await odysseyDB.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
