@@ -21,20 +21,9 @@
     "persistent": false
   },
 
-  "chrome_url_overrides" : {
-    "newtab": "newtab/newtab.html"
-  },
-
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["content.js"]
-    }
-  ],
-
-  "devtools_page": "devtools/devtools.html",
   "content_security_policy": "script-src 'self' https://www.youtube.com https://cdn.rawgit.com; object-src 'self'",
   "permissions":[
-        "storage"
+        "storage",
+        "identity"
     ]
 }

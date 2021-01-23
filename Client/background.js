@@ -1,13 +1,13 @@
-// omnibox
-chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
-	suggest([
-	  {content: "color-divs", description: "Make everything red"}
-	]);
-});
-chrome.omnibox.onInputEntered.addListener(function(text) {
-	if(text == "color-divs") colorDivs();
-});
 
+  // Evento del omnibox
+  chrome.omnibox.onInputEntered.addListener(
+	function(text) {
+	  console.log('inputEntered: ' + text);
+	  alert('You just typed "' + text + '"');
+	});
+
+
+/*
 // listening for an event / one-time requests
 // coming from the popup
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
@@ -38,4 +38,4 @@ var colorDivs = function() {
 	    // setting a badge
 		chrome.browserAction.setBadgeText({text: "red!"});
 	});
-}
+}*/
