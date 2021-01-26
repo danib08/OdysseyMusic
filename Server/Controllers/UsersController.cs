@@ -68,7 +68,6 @@ namespace Server.Controllers
 
         // DELETE api/<UsersController>/id
         [HttpDelete("{id}")]
-        
         public async Task<IActionResult> Delete(int id)
         {
             var user = await odysseyDB.Users.FindAsync(id);
