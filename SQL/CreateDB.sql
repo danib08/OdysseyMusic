@@ -10,8 +10,7 @@ CREATE TABLE `Songs` (
 );
 
 CREATE TABLE `Users` (
-  `id_user` INT AUTO_INCREMENT,
-  `name_user` VARCHAR(255),
+  `id` INT AUTO_INCREMENT,
   `email_user` VARCHAR(255),
-  PRIMARY KEY (`id_user`)
+  PRIMARY KEY (`id`)
 );

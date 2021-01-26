@@ -7,8 +7,8 @@ namespace Server.Models
     public partial class Users
     {
         [Key]
-        [Column("id_google")]
-        public int IdUser { get; set; }
+        [Column("id_song")]
+        public int IdSong { get; set; }
 
         [Column("email_user")]
         [StringLength(255)]
