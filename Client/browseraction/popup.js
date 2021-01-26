@@ -1,11 +1,4 @@
-/* window.onload = function() {
-	document.getElementById("button").onclick = function() {
-		chrome.extension.sendMessage({
-			type: "color-divs"
-		}); 
-	} 
-}
-*/
+
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
