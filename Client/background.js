@@ -6,9 +6,9 @@
       search: text
     }
 
-    fetch('https://localhost:5001/api/songs?search', {
+    fetch('https://localhost:5001/api/songs/search/' + data, {
       method: 'GET',
-      body: JSON.stringify(data),
+      //body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json())
