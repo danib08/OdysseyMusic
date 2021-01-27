@@ -8,7 +8,7 @@ namespace Server.Models
     {
         [Key]
         [Column("id_song")]
-        public int IdSong { get; set; }
+        public int IdUser { get; set; }
 
         [Column("email_user")]
         [StringLength(255)]

@@ -1,0 +1,83 @@
+.modal{
+    background-image: url("https://consciouslylifenk.s3.amazonaws.com/uploads/card/picture/1848/tumblr_ovm1amLwdb1u7gnm9o1_500.gif");
+    width: 400px;
+    height: 370px;
+    place-items: center;
+    display: grid;
+    border-radius: 10px;
+}
+.modal-content {
+    align-items: center;
+    justify-content: center;
+    width:  300px;
+    margin: 20px;
+    background-color: rgba(194, 194, 194, 0.4);
+    border-radius: 10px; 
+}
+
+.modal-information {
+    width: 300px;
+    display: flex;
+    margin: 20px;
+    background-color: rgba(194, 194, 194, 0.4);  
+    align-items: center; 
+    border-radius: 10px;
+}
+
+.image-container{
+    margin: 10px;
+}
+
+.song-container{
+    margin: 10px;
+}
+
+#play {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-image: url("play.png");
+    background-color:rgba(102, 102, 102, 0.0);
+    border: hidden;
+}
+
+#stop {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-image: url("stop.png");
+    background-color:rgba(102, 102, 102, 0.0);
+    border: hidden; 
+}
+
+#pause {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-image: url("pause.png");
+    background-color:rgba(102, 102, 102, 0.0);
+    border: hidden;  
+}
+
+#albumImage {
+    width:90px;
+    height:70px;
+}
+
+button:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.6));
+}
+
+button:active{
+    filter: none;
+    transform: scale(.95);
+}
+
+#volumeText{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#timeText {
+    font-family: 'Courier New', Courier, monospace;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Oddisey Music",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description" : "Description ...",
+  "icons": { "16": "icons/16x16.png", "48": "icons/48x48.png", "128": "icons/128x128.png" },
+
+  "omnibox": { "keyword" : "@Odyssey" },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/19x19.png",
+      "38": "icons/38x38.png"
+    },
+    "default_title": "That's the tool tip",
+    "default_popup": "browseraction/popup.html"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "content_security_policy": "script-src 'self' https://www.youtube.com https://cdn.rawgit.com; object-src 'self'",
+  "permissions":[
+        "storage",
+        "identity",
+        "identity.email"
+  ]
+}
