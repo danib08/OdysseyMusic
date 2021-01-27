@@ -36,7 +36,6 @@ namespace Server
                     .AllowAnyHeader());
             });
 
-
             services.AddDbContext<OdysseyMusicDB>();
 
             services.AddControllers();
