@@ -26,6 +26,16 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
             services.AddControllers();
             services.AddDbContext<OdysseyMusicDB>();
         }
@@ -43,6 +53,9 @@ namespace Server
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // CORS Policy
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
