@@ -45,7 +45,7 @@ namespace Server.Controllers
         [HttpGet("search/{input}")]
         public IActionResult Search(string input)
         {
-            var query = odysseyDB.Songs.Where(a => a.NameSong == input || a.NameSong == input || a.Lyrics.Contains(input));
+            var query = odysseyDB.Songs.Where(a => a.NameSong == input || a.NameArtist == input || a.Lyrics.Contains(input));
             return Ok(query);
         }
 
