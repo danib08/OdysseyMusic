@@ -4,16 +4,14 @@
   // Manejar la UI por componentes
 
   // Evento del omnibox
-  chrome.omnibox.onInputEntered.addListener(function(text) {
+  chrome.omnibox.onInputChanged.addListener(async function(text) {
 	  console.log(text);
     alert(text + '"')
     let data = {
       search: text
     }
-
-    fetch(`${URL}songs?search`, {
+    fetch(`${URL}songs/search/` + text, {
       method: 'GET',
-      body: JSON.stringify(data),
       headers: {"Content-type": "application/json"}
     })
     .then(response => response.json())
@@ -22,7 +20,7 @@
     });
 
 // Hacer user login
-chrome.identity.getProfileUserInfo( async function(info) { 
+chrome.identity.getProfileUserInfo(async function(info) { 
   email = info.email; 
   user = info.id;
   console.log(email)
