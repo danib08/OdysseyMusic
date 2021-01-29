@@ -14,7 +14,7 @@
     fetch(`${URL}songs?search`, {
       method: 'GET',
       body: JSON.stringify(data),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
+      headers: {"Content-type": "application/json"}
     })
     .then(response => response.json())
     .then(json => console.log(json))
@@ -35,7 +35,7 @@ chrome.identity.getProfileUserInfo( async function(info) {
   fetch(`${URL}users`, {
     method: 'POST',
     body: JSON.stringify(userEmail),
-    headers: {"Content-type": "application/json; charset=UTF-8"}
+    headers: {"Content-type": "application/json"}
   })
   .then(response => response.json())
   .then(json => console.log(json))
