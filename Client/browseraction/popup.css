@@ -63,7 +63,7 @@
     width: 30px;
     height: 30px;
     margin: 10px;
-    background-image: url("next.png");
+    background-image: url("nnext.png");
     background-color:rgba(102, 102, 102, 0.0);
     border: hidden;  
 }
@@ -90,3 +90,11 @@ button:active{
 #timeText {
     font-family: 'Courier New', Courier, monospace;
 }
+
+.panel {
+    visibility: hidden;
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    z-index: inherit top;
+ }
