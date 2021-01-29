@@ -4,9 +4,9 @@
 
 ### Requisitos mínimos:
 
-#### Docker (MySQL image)
-#### ASP Core (Visual Studio)
-#### Datagrip o Workbench para el manejo de MySQL
+##### Docker (MySQL image)
+##### ASP Core (Visual Studio)
+##### Datagrip o Workbench para el manejo de MySQL
 
 ### Instrucciones de ejecución
 
