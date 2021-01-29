@@ -6,7 +6,6 @@
   // Evento del omnibox
 chrome.omnibox.onInputChanged.addListener(async function(text) {
 	console.log(text);
-    alert(text + '"')
     let data = {
       search: text
     }
