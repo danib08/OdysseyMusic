@@ -35,13 +35,6 @@ function onYouTubeIframeAPIReady() {
         },
     });
 }
-//Change video api------------------------------------------
-/*
-getSongBtn.onclick = function() {
-    var videoId= document.getElementById("videoId").value.toString();
-    console.log (videoId);
-    player.loadVideoById(videoId);
-} -------------------------------------------------------------*/
 
 //Starts playing the current song
 
@@ -77,21 +70,36 @@ timeBar.onclick = function (e) {
 }
 
 prevBtn.onclick = function () { //------------------------------------------
-    player.loadVideoById('h5WN3pkxPF0');
+    changeSong('h5WN3pkxPF0');
     //changeSong('rBlOSqZ0UlE');
-    updateData('h5WN3pkxPF0');
-    player.loadVideoById(songId);
 }
 
 function changeSong (songId) {
     player.loadVideoById(songId);
     updateData(songId);
+    player.playVideo();
+    setTimeout(isPlaying, 3000); //The bar is update each 2 seconds
+}
+
+function isPlaying(){
+    var time = player.getCurrentTime();
+    if(time != 0){
+        panel.style.visibility = "hidden";
+        console.log("Si se va a reproducir");
+    }
+    else{
+        panel.style.height = `${songImage.height}px`;
+        panel.style.width = `${songImage.width}px`;
+        panel.style.visibility = "visible";
+        console.log("No se va a reproducir");
+    }
 }
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+    changeSong('Q2HkVnyCCak');
     player.loadVideoById('Q2HkVnyCCak');
-    updateData('Q2HkVnyCCak');
+    
 }
 
 // This function is activated each time that the state of the player is changed
