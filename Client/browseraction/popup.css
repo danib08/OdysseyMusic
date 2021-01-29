@@ -36,9 +36,18 @@
     width: 30px;
     height: 30px;
     margin: 10px;
-    background-image: url("play.png");
+    background-Image: url("pause.png");
     background-color:rgba(102, 102, 102, 0.0);
     border: hidden;
+}
+
+#previous {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-image: url("prev.png");
+    background-color:rgba(102, 102, 102, 0.0);
+    border: hidden; 
 }
 
 #stop {
@@ -47,14 +56,14 @@
     margin: 10px;
     background-image: url("stop.png");
     background-color:rgba(102, 102, 102, 0.0);
-    border: hidden; 
+    border: hidden;  
 }
 
-#pause {
+#next {
     width: 30px;
     height: 30px;
     margin: 10px;
-    background-image: url("pause.png");
+    background-image: url("next.png");
     background-color:rgba(102, 102, 102, 0.0);
     border: hidden;  
 }

@@ -7,12 +7,12 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // Variables needed
-var player, playBtn, pauseBtn, stopBtn, volumeBar, timeBar, getSongBtn, movingBar;
+var player, playBtn, pauseBtn, stopBtn, volumeBar, timeBar, getSongBtn, movingBar, playing;
 movingBar = false;
 
 //Definiton of the variables created
 playBtn = document.getElementById("play");
-pauseBtn = document.getElementById("pause");
+// pauseBtn = document.getElementById("pause");
 stopBtn = document.getElementById("stop");
 volumeBar = document.getElementById("volume");
 timeBar = document.getElementById("time");
@@ -41,16 +41,54 @@ getSongBtn.onclick = function() {
 } -------------------------------------------------------------*/
 
 //Starts playing the current song
+
+// Se cambia la canción y la información
+async function changeSong(songId){
+    player.loadVideoById(songId);
+
+    // videoInfo devuelve un Promise y se trabaja con el resultado.
+    videoInfo(songId).then(function(result){
+        var status, imgUrl, name;
+        status = result.playabilityStatus.status;
+        imgUrl = result.videoDetails.thumbnail.thumbnails[2].url;
+        name = result.videoDetails.title.replaceAll("+", " ");
+
+        songName.innerHTML = name;
+        mainImage.src = imgUrl;
+
+        // Si el status es UNPLAYABLE se indica con el panel correspondiente
+        if (status === "UNPLAYABLE"){
+            panel.style.height = `${mainImage.height}px`;
+            panel.style.width = `${mainImage.width}px`;
+            panel.style.visibility = "visible";
+        }
+        else{
+            panel.style.visibility = "hidden";
+        } 
+    })
+}
+
+playing = true;
+
 playBtn.onclick = function () {
-	player.playVideo();
+    if(playing){
+        player.pauseVideo(); 
+        playBtn.style.backgroundImage = "url(play.png)";
+        playBtn.style.backgroundColor= "rgba(102, 102, 102, 0.0)";
+        playBtn.style.border= "hidden";
+        console.log("playing");
+    }
+    else{
+        player.playVideo();
+        playBtn.style.backgroundImage = "url(pause.png)";
+        playBtn.style.backgroundColor= "rgba(102, 102, 102, 0.0)";
+        playBtn.style.border= "hidden";
+        console.log("stopping");
+    }
+    playing = !playing;
 }
 
 //Pause the current song
-pauseBtn.onclick = function () {
-	player.pauseVideo();
-}
-
-//Stop the current song
 stopBtn.onclick = function () {
 	player.stopVideo();
 }
@@ -80,7 +118,7 @@ function onPlayerStateChange(event) {
 function updateBar() {
 	if (YT.PlayerState.PLAYING) {
 		timeBar.value = player.getCurrentTime();
-		setTimeout(updateBar, 2000); //The bar is update each 1 second
+		setTimeout(updateBar, 1000); //The bar is update each 1 second
 	}
 }
 
