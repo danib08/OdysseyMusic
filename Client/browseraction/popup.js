@@ -7,7 +7,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // Variables needed
-var player, playBtn, pauseBtn, stopBtn, volumeBar, timeBar, getSongBtn;
+var player, playBtn, pauseBtn, stopBtn, volumeBar, timeBar, getSongBtn, movingBar;
+movingBar = false;
 
 //Definiton of the variables created
 playBtn = document.getElementById("play");
@@ -66,7 +67,7 @@ timeBar.onclick = function (e) {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-	player.playVideo();
+	changeSong('Q2HkVnyCCak');
 }
 
 // This function is activated each time that the state of the player is changed
@@ -82,3 +83,72 @@ function updateBar() {
 		setTimeout(updateBar, 2000); //The bar is update each 1 second
 	}
 }
+
+// Se recibe la información del GET que se hace a YouTube y se retorna una Promise con un JSON con la información del video
+async function videoInfo(songId){
+
+    // Se parsea la respuesta del GET
+    parseYoutubeInfoStringToFormats = function(youtubeInfoString) {
+        var element, formatStreamArray, youtubeInfoArray, _i, _len;
+        youtubeInfoArray = youtubeInfoString.split('&');
+  
+        if (youtubeInfoArray[0] === 'status=fail') {
+          return false;
+        }
+  
+        var _i, _len, _results;
+  
+        for (_i = 0, _len = youtubeInfoArray.length; _i < _len; _i++) {
+          element = youtubeInfoArray[_i];
+          if (element.split('=')[0] === 'player_response') {
+              //console.log(element);
+              _results = element;
+              break;
+          }
+        }
+        
+        formatStreamArray = decodeURIComponent(_results);
+        formatStreamArray = formatStreamArray.replace("player_response=", "");
+        console.log(formatStreamArray);
+        var jsonObj = JSON.parse(formatStreamArray);
+        console.log(jsonObj);
+        return jsonObj;
+      };
+    // Se utiliza el Promise por que sino no se puede retornar el valor (Problemas con procesos sincrónicos y asincrónicos)
+    var promise = new Promise(function(resolve){
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.open("GET", "http://www.youtube.com/get_video_info?video_id=" + songId, true);
+        anHttpRequest.setRequestHeader('Access-Control-Allow-Origin','*');
+        anHttpRequest.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+        anHttpRequest.setRequestHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
+        anHttpRequest.setRequestHeader('Content-type', 'text');
+        anHttpRequest.onreadystatechange = function () {
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                resolve(parseYoutubeInfoStringToFormats(anHttpRequest.responseText));  
+        };
+        anHttpRequest.send(null);
+    });
+
+    return promise;
+}
+
+timeBar.onchange = function(){
+    player.seekTo(timeBar.value, true);
+    movingBar = false;
+}
+
+timeBar.onmousedown = function(){
+    movingBar = true;
+}
+
+window.onbeforeunload = function(){
+    
+}
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        //console.log("https://www.youtube.com/embed/"+request.msg)
+        //document.getElementById("interfaz").src="https://www.youtube.com/embed/"+request.msg
+        changeSong(request.msg)
+    }
+);
