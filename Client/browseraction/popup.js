@@ -130,11 +130,11 @@ window.onbeforeunload = function () {
 
 }
 
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         //console.log("https://www.youtube.com/embed/"+request.msg)
         //document.getElementById("interfaz").src="https://www.youtube.com/embed/"+request.msg
-        changeSong(request.msg)
+        console.log(message.msg)
+        changeSong(message.msg)
     }
 );
 

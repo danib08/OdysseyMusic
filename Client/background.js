@@ -1,5 +1,6 @@
-  // Archivo de Constantes
+// Archivo de Constantes
   const URL = 'https://localhost:5001/api/'
+  const APIkey = 'AIzaSyCf0ymU5WxTRkfEq9Z_S46Hb1lmZ8jXEqc'
   // Manejar Endpoints como servicios, archivo aparte, get, post, y esas cosas raras.
   // Manejar la UI por componentes
 
@@ -17,18 +18,17 @@ chrome.omnibox.onInputChanged.addListener(async function(text, suggest) {
     });
 
 chrome.omnibox.onInputEntered.addListener(async function(text, disposition){
-  let myResponse = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${text}&key=AIzaSyB61Hqd0S1jfbqMuuFHMU8ojp3O8gEry9k`, {
+  let myResponse = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${text}&key=${APIkey}`, {
             method: 'GET',
             headers: {
                 "Content-type": "application/json"
     }})
       .then(response => response.json())
       .then(json => json)
-      console.log(myResponse.items[0].id.videoId)
-      await sendYoutubeLink(myResponse.items[0].id.videoId)
+      sendYoutubeLink(myResponse.items[0].id.videoId)
 })
 
-async function sendYoutubeLink(message){
+function sendYoutubeLink(message){
     chrome.runtime.sendMessage({
         msg: message,
     });
