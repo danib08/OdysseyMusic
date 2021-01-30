@@ -4,11 +4,7 @@
   // Manejar la UI por componentes
 
   // Evento del omnibox
-chrome.omnibox.onInputChanged.addListener(async function(text) {
-	console.log(text);
-    let data = {
-      search: text
-    }
+chrome.omnibox.onInputChanged.addListener(async function(text, suggest) {
     let songData = await fetch(`${URL}songs/search/` + text, {
       method: 'GET',
       headers: {"Content-type": "application/json"}
@@ -16,7 +12,7 @@ chrome.omnibox.onInputChanged.addListener(async function(text) {
     .then(response => response.json())
     .then(json => json)
     for (track in songData){
-      suggest([{content: songData[track].songName + " " + songData[track].artistName, description: songData[track].songName}])
+      suggest([{content: songData[track].nameSong + " " + songData[track].nameArtist, description: songData[track].nameSong}])
     }
     });
 
@@ -31,7 +27,6 @@ chrome.omnibox.onInputEntered.addListener(async function(text, disposition){
       console.log(myResponse.items[0].id.videoId)
       await sendYoutubeLink(myResponse.items[0].id.videoId)
 })
-
 
 async function sendYoutubeLink(message){
     chrome.runtime.sendMessage({
