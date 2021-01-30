@@ -54,7 +54,7 @@ namespace Server.Controllers
             {
                 return false;
             }
-            return true;        
+            return true;
         }
 
         // POST api/<UsersController>

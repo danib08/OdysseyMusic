@@ -1,5 +1,20 @@
+#image-background{
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-image: url("https://wallpaperaccess.com/full/187161.jpg"); 
+    filter: blur(3px);
+    -webkit-filter: blur(8px); 
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
 .modal{
-    background-image: url("https://consciouslylifenk.s3.amazonaws.com/uploads/card/picture/1848/tumblr_ovm1amLwdb1u7gnm9o1_500.gif");
     width: 400px;
     height: 370px;
     place-items: center;
@@ -9,6 +24,7 @@
 .modal-content {
     align-items: center;
     justify-content: center;
+    justify-items: center;
     width:  300px;
     margin: 20px;
     background-color: rgba(194, 194, 194, 0.4);
@@ -32,14 +48,29 @@
     margin: 10px;
 }
 
+.panel {
+    position:absolute;
+    
+}
+
 #play {
     width: 30px;
     height: 30px;
     margin: 10px;
-    background-image: url("play.png");
+    background-Image: url("pause.png");
     background-color:rgba(102, 102, 102, 0.0);
     border: hidden;
 }
+
+#previous {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-image: url("prev.png");
+    background-color:rgba(102, 102, 102, 0.0);
+    border: hidden; 
+}
+
 
 #stop {
     width: 30px;
@@ -47,21 +78,21 @@
     margin: 10px;
     background-image: url("stop.png");
     background-color:rgba(102, 102, 102, 0.0);
-    border: hidden; 
+    border: hidden;  
 }
 
-#pause {
+#next {
     width: 30px;
     height: 30px;
     margin: 10px;
-    background-image: url("pause.png");
+    background-image: url("nnext.png");
     background-color:rgba(102, 102, 102, 0.0);
     border: hidden;  
 }
 
 #albumImage {
-    width:90px;
-    height:70px;
+    width:140px;
+    height:110px;
 }
 
 button:hover{
@@ -76,8 +107,93 @@ button:active{
 
 #volumeText{
     font-family: 'Courier New', Courier, monospace;
+    background-image: url("sound.png");
+    background-repeat: no-repeat; 
+    background-position: 10px;
+    align-items: center;
 }
 
 #timeText {
     font-family: 'Courier New', Courier, monospace;
 }
+
+.panel {
+    visibility: hidden;
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    z-index: 10;
+ }
+
+ #volume {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 4px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+    position: relative;
+    top: 0px;
+    left: 30px;
+  }
+  
+  #volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; 
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  #volume::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #7c7979;
+    cursor: pointer;
+  }
+
+  #time {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 6px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+    position: relative;
+    top: 0px;
+    left: 10px;
+  }
+  
+  #time::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  #time::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #7c7979;
+    cursor: pointer;
+  }
+
+  #panelText {
+    position: absolute;
+    
+  }

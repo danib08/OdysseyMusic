@@ -28,7 +28,7 @@ namespace Server.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
+
             modelBuilder.Entity<Songs>(entity =>
             {
                 entity.HasKey(e => e.IdSong)
