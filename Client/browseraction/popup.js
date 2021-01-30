@@ -74,20 +74,20 @@ prevBtn.onclick = function () { //------------------------------------------
     //changeSong('rBlOSqZ0UlE');
 }
 
-function changeSong (songId) {
+function changeSong(songId) {
     player.loadVideoById(songId);
     updateData(songId);
     player.playVideo();
     setTimeout(isPlaying, 3000); //The bar is update each 2 seconds
 }
 
-function isPlaying(){
+function isPlaying() {
     var time = player.getCurrentTime();
-    if(time != 0){
+    if (time != 0) {
         panel.style.visibility = "hidden";
         console.log("Si se va a reproducir");
     }
-    else{
+    else {
         panel.style.height = `${songImage.height}px`;
         panel.style.width = `${songImage.width}px`;
         panel.style.visibility = "visible";
@@ -99,13 +99,13 @@ function isPlaying(){
 function onPlayerReady(event) {
     changeSong('Q2HkVnyCCak');
     player.loadVideoById('Q2HkVnyCCak');
-    
+
 }
 
 // This function is activated each time that the state of the player is changed
 function onPlayerStateChange(event) {
     timeBar.max = player.getDuration();
-    console.log("The player duration is "+ player.getDuration());
+    console.log("The player duration is " + player.getDuration());
     player.addEventListener("onStateChange", updateBar);
 }
 
@@ -130,19 +130,22 @@ window.onbeforeunload = function () {
 
 }
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-        //console.log("https://www.youtube.com/embed/"+request.msg)
-        //document.getElementById("interfaz").src="https://www.youtube.com/embed/"+request.msg
-        console.log(message.msg)
-        changeSong(message.msg)
-    }
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    //console.log("https://www.youtube.com/embed/"+request.msg)
+    //document.getElementById("interfaz").src="https://www.youtube.com/embed/"+request.msg
+    changeSong(message.msg);
+}
 );
 
 async function updateData(songId) {
-    let myResponse = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${songId}&key=AIzaSyDLVS2a4rbn48V2XvgN0kzUw_4pKWgWWqo`,
-        { method: 'GET', headers: { "Content-type": "application/json" } }).then(response => response.json()).then(json => json);
-    //console.log(myResponse); 
-    songName.innerHTML = myResponse.items[0].snippet.title; 
+    console.log("el song id es " + songId);
+    let myResponse = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${songId}&key= AIzaSyDLyxAnr6NvOxnPSC6clqWItKjdfPEAFKA`,
+        {
+            method: 'GET', headers: { "Content-type": "application/json" }
+        }).then(response => response.json())
+        .then(json => json);
+    console.log(myResponse);
+    songName.innerHTML = myResponse.items[0].snippet.title;
     songImage.src = myResponse.items[0].snippet.thumbnails.high.url;
     panel.style.height = `${songImage.height}px`; panel.style.width = `${songImage.width}px`;
 }

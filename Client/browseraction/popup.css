@@ -48,6 +48,11 @@
     margin: 10px;
 }
 
+.panel {
+    position:absolute;
+    
+}
+
 #play {
     width: 30px;
     height: 30px;
@@ -113,5 +118,28 @@ button:active{
     position:absolute;
     bottom:0px;
     left:0px;
-    z-index: inherit top;
+    z-index: 10;
  }
+
+#volumeText, #timeText {
+    height: 10px;
+    width: 80%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #E1E6EC;
+    box-shadow: 2px 2px 5px hsl(215, 61%, 31%) , -2px -2px 11px  #fff  ;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+#volumeText, #timeText::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background-color: #A2B1C6;
+    box-shadow: 2px 2px 5px #A2B1C6 , -2px -2px 5px  #fff  ;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    border-radius: 90px;
+}
+#volumeText, #timeText::-moz-range-thumb{
+    width: 25px;
+    height: 25px;
+}
